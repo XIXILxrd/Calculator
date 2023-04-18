@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
@@ -17,15 +16,14 @@
             android:id="@+id/input_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:textAlignment="textEnd"
             android:textColor="@color/black"
             android:textSize="40sp"
             app:layout_constraintBottom_toTopOf="@id/result_textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1+1" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/result_textView"
@@ -36,8 +34,7 @@
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_textView"
-            tools:text="2" />
+            app:layout_constraintTop_toBottomOf="@id/input_textView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout style="@style/buttonRow">
@@ -45,24 +42,24 @@
         <Button
             android:id="@+id/clearAll_button"
             style="@style/buttonOperator"
-            android:textSize="25sp"
-            tools:text="C" />
+            android:text="@string/allClear"
+            android:textSize="25sp" />
 
         <Button
             android:id="@+id/division_button"
             style="@style/buttonOperator"
-            tools:text="÷" />
+            android:text="@string/division" />
 
         <Button
             android:id="@+id/multiply_button"
             style="@style/buttonOperator"
-            tools:text="×" />
+            android:text="@string/multiply" />
 
         <Button
             android:id="@+id/backspace_button"
             style="@style/buttonOperator"
-            android:textSize="25sp"
-            tools:text="⌫" />
+            android:text="@string/backspace"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <LinearLayout style="@style/buttonRow">
@@ -70,22 +67,22 @@
         <Button
             android:id="@+id/seven_button"
             style="@style/buttonNumber"
-            tools:text="7" />
+            android:text="@string/seven" />
 
         <Button
             android:id="@+id/eight_button"
             style="@style/buttonNumber"
-            tools:text="8" />
+            android:text="@string/eight" />
 
         <Button
             android:id="@+id/nine_button"
             style="@style/buttonNumber"
-            tools:text="9" />
+            android:text="@string/nine" />
 
         <Button
             android:id="@+id/minus_button"
             style="@style/buttonOperator"
-            tools:text="−" />
+            android:text="@string/minus" />
     </LinearLayout>
 
     <LinearLayout style="@style/buttonRow">
@@ -93,22 +90,22 @@
         <Button
             android:id="@+id/four_button"
             style="@style/buttonNumber"
-            tools:text="4" />
+            android:text="@string/four" />
 
         <Button
             android:id="@+id/five_button"
             style="@style/buttonNumber"
-            tools:text="5" />
+            android:text="@string/five" />
 
         <Button
             android:id="@+id/six_button"
             style="@style/buttonNumber"
-            tools:text="6" />
+            android:text="@string/six" />
 
         <Button
             android:id="@+id/plus_button"
             style="@style/buttonOperator"
-            tools:text="+" />
+            android:text="@string/plus" />
     </LinearLayout>
 
     <LinearLayout
@@ -130,18 +127,18 @@
                 <Button
                     android:id="@+id/one_button"
                     style="@style/buttonNumber"
-                    tools:text="1" />
+                    android:text="@string/one" />
 
                 <Button
                     android:id="@+id/two_button"
                     style="@style/buttonNumber"
                     android:layout_height="match_parent"
-                    tools:text="2" />
+                    android:text="@string/two" />
 
                 <Button
                     android:id="@+id/three_button"
                     style="@style/buttonNumber"
-                    tools:text="3" />
+                    android:text="@string/three" />
             </LinearLayout>
 
             <LinearLayout
@@ -153,17 +150,17 @@
                 <Button
                     android:id="@+id/percent_button"
                     style="@style/buttonNumber"
-                    tools:text="%" />
+                    android:text="@string/percent" />
 
                 <Button
                     android:id="@+id/zero_button"
                     style="@style/buttonNumber"
-                    tools:text="0" />
+                    android:text="@string/zero" />
 
                 <Button
                     android:id="@+id/dot_button"
                     style="@style/buttonNumber"
-                    tools:text="." />
+                    android:text="@string/dot" />
             </LinearLayout>
         </LinearLayout>
 
@@ -173,8 +170,8 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:background="@drawable/large_button_shadow"
+            android:text="@string/equal"
             android:textColor="@color/white"
-            android:textSize="35sp"
-            tools:text="=" />
+            android:textSize="35sp" />
     </LinearLayout>
 </LinearLayout>
