@@ -4,4 +4,6 @@
     <color name="shadow">#EEEEEE</color>
     <color name="black">#000000</color>
     <color name="blue">#285AED</color>
+    <color name="smokyWhite">#F5F5F5</color>
+    <color name="darkGray">#505050</color>
 </resources>

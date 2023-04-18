@@ -1,9 +1,9 @@
 package com.example.calculator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.example.calculator.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -44,6 +44,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.divisionButton.setOnClickListener {
             operationAction(it)
+        }
+
+        binding.percentButton.setOnClickListener {
+            //
+        }
+
+        binding.dotButton.setOnClickListener {
+            addDot()
         }
 
         binding.zeroButton.setOnClickListener {
@@ -89,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun numberAction(view: View) {
         if (view is Button) {
-            if (view.text == ".") {
+            if (view.text == getString(R.string.dot)) {
                 if (canAddDecimal) {
                     binding.inputTextView.append(view.text)
                 }
@@ -121,6 +129,8 @@ class MainActivity : AppCompatActivity() {
 
         if (length > 0) {
             binding.inputTextView.text = binding.inputTextView.text.subSequence(0, length - 1)
+        } else {
+            binding.resultTextView.text = ""
         }
     }
 
@@ -141,7 +151,7 @@ class MainActivity : AppCompatActivity() {
             return ""
         }
 
-        val result =  addSubtractCalculate(timesDivision)
+        val result = addSubtractCalculate(timesDivision)
 
         return result.toString()
     }
@@ -154,11 +164,11 @@ class MainActivity : AppCompatActivity() {
                 val operator = passedList[i]
                 val nextDigit = passedList[i + 1] as Float
 
-                if (operator == getString(R.string.plus)) {
+                if (operator.toString() == getString(R.string.plus)) {
                     result += nextDigit
                 }
 
-                if (operator == getString(R.string.minus)) {
+                if (operator.toString() == getString(R.string.minus)) {
                     result -= nextDigit
                 }
             }
@@ -170,7 +180,9 @@ class MainActivity : AppCompatActivity() {
     private fun timesDivisionCalculate(passedList: MutableList<Any>): MutableList<Any> {
         var list = passedList
 
-        while (list.contains(getString(R.string.multiply)) || list.contains(getString(R.string.division))) {
+        while (list.contains(getString(R.string.multiply).single())
+            || list.contains(getString(R.string.division).single())
+        ) {
             list = calculateTimesDivision(list)
         }
 
@@ -188,15 +200,17 @@ class MainActivity : AppCompatActivity() {
                 val previousDigit = passedList[i - 1] as Float
                 val nextDigit = passedList[i + 1] as Float
 
-                when (operator) {
+                when (operator.toString()) {
                     getString(R.string.multiply) -> {
                         newList.add(previousDigit * nextDigit)
                         restartIndex = i + 1
                     }
+
                     getString(R.string.division) -> {
-                        newList.add(previousDigit * nextDigit)
+                        newList.add(previousDigit / nextDigit)
                         restartIndex = i + 1
                     }
+
                     else -> {
                         newList.add(previousDigit)
                         newList.add(operator)
@@ -217,10 +231,9 @@ class MainActivity : AppCompatActivity() {
         var currentDigit = ""
 
         for (character in binding.inputTextView.text) {
-            if (character.isDigit() || character == '.') {
+            if (character.isDigit() || character.toString() == getString(R.string.dot)) {
                 currentDigit += character
-            }
-            else {
+            } else {
                 list.add(currentDigit.toFloat())
                 currentDigit = ""
                 list.add(character)
@@ -232,5 +245,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         return list
+    }
+
+    private fun addDot() {
+        binding.inputTextView.append(".")
     }
 }
