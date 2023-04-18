@@ -19,14 +19,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
+            android:autofillHints=""
             android:textAlignment="textEnd"
             android:textColor="@color/black"
             android:textSize="50sp"
-            tools:text="1+1"
             app:layout_constraintBottom_toTopOf="@id/result_textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1+1" />
 
         <TextView
             android:id="@+id/result_textView"
@@ -35,10 +36,10 @@
             android:textAlignment="textEnd"
             android:textColor="@color/darkGray"
             android:textSize="35sp"
-            tools:text="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_textView" />
+            app:layout_constraintTop_toBottomOf="@id/input_textView"
+            tools:text="2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout style="@style/buttonRow">

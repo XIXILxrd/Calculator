@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.percentButton.setOnClickListener {
-            //
+            numberAction(it)
         }
 
         binding.dotButton.setOnClickListener {
@@ -162,7 +162,12 @@ class MainActivity : AppCompatActivity() {
         for (i in passedList.indices) {
             if (passedList[i] is Char && i != passedList.lastIndex) {
                 val operator = passedList[i]
-                val nextDigit = passedList[i + 1] as Float
+                var nextDigit = passedList[i + 1] as Float
+                val percent = passedList.indexOf(getString(R.string.percent).single())
+
+                if (percent != -1) {
+                    nextDigit = ((passedList[percent - 1] as Float) / 100) * result
+                }
 
                 if (operator.toString() == getString(R.string.plus)) {
                     result += nextDigit
