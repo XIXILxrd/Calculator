@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         if (length > 0) {
             binding.inputTextView.text = binding.inputTextView.text.subSequence(0, length - 1)
         } else {
-            binding.resultTextView.text = ""
+            allClearAction()
         }
     }
 
@@ -157,18 +157,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addSubtractCalculate(passedList: MutableList<Any>): Float {
-        var result = passedList[0] as Float
+        var result = passedList[0].toString().toFloat()
 
         for (i in passedList.indices) {
             if (passedList[i] is Char && i != passedList.lastIndex) {
                 val operator = passedList[i]
-                var nextDigit = passedList[i + 1] as Float
-                val percent = passedList.indexOf(getString(R.string.percent).single())
-
-                if (percent != -1) {
-                    nextDigit = ((passedList[percent - 1] as Float) / 100) * result
+                val nextDigit = if ((passedList[i + 1].toString()).contains(getString(R.string.percent).single())) {
+(                    (((passedList[i + 1].toString()).subSequence(0, passedList[i + 1].toString().length - 1)).toString().toFloat()) / 100 * result)
+                }else {
+                    passedList[i + 1].toString().toFloat()
                 }
-
                 if (operator.toString() == getString(R.string.plus)) {
                     result += nextDigit
                 }
@@ -202,8 +200,13 @@ class MainActivity : AppCompatActivity() {
         for (i in passedList.indices) {
             if (passedList[i] is Char && i != passedList.lastIndex && i < restartIndex) {
                 val operator = passedList[i]
-                val previousDigit = passedList[i - 1] as Float
-                val nextDigit = passedList[i + 1] as Float
+                val previousDigit = passedList[i - 1].toString().toFloat()
+
+                val nextDigit = if ((passedList[i + 1].toString()).contains(getString(R.string.percent).single())) {
+                    ((passedList[i + 1].toString()).subSequence(0, passedList[i + 1].toString().length - 1)).toString().toFloat() / 100
+                }else {
+                    passedList[i + 1].toString().toFloat()
+                }
 
                 when (operator.toString()) {
                     getString(R.string.multiply) -> {
@@ -236,17 +239,19 @@ class MainActivity : AppCompatActivity() {
         var currentDigit = ""
 
         for (character in binding.inputTextView.text) {
-            if (character.isDigit() || character.toString() == getString(R.string.dot)) {
+            if (character.isDigit() || character == getString(R.string.dot).single() ||
+                character == getString(R.string.percent).single()
+            ) {
                 currentDigit += character
             } else {
-                list.add(currentDigit.toFloat())
+                list.add(currentDigit)
                 currentDigit = ""
                 list.add(character)
             }
         }
 
         if (currentDigit != "") {
-            list.add(currentDigit.toFloat())
+            list.add(currentDigit)
         }
 
         return list
